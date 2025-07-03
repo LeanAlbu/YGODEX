@@ -1,13 +1,12 @@
-
 fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php')
   .then(res => res.json())
   .then(data => {
     const cards = data.data
-    .filter(c => c.fname.toLowerCase().includes("Magician"))
-    .slice(0,5);
+    .filter(c => c.type && c.type.includes("Spell Card"))
+    //.slice(0,10);
 
     const ul = document.getElementById('card-list');
-    ul.innerHTML = '';
+    //ul.innerHTML = '';
 
     cards.forEach(card => {
       const li = document.createElement('li');
@@ -31,4 +30,3 @@ fetch('https://db.ygoprodeck.com/api/v7/cardinfo.php')
   .catch(err => {
     console.error("Erro ao carregar cartas:", err);
   });
-
